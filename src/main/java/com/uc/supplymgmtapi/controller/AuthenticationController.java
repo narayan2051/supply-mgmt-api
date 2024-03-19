@@ -42,7 +42,7 @@ public class AuthenticationController {
         if (authentication.isAuthenticated()) {
             return ResponseEntity.ok(new TokenDTO(jwtService.generateToken(login.getEmail()), authentication.getAuthorities().toString()));
         } else {
-            throw new UsernameNotFoundException("invalid user request !");
+            throw new UsernameNotFoundException("invalid user !");
         }
     }
 
