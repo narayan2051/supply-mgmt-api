@@ -14,12 +14,13 @@ import lombok.experimental.FieldDefaults;
 public class CompanyInfo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Long id;
 
     String name;
     String phone;
 
     String pan;
     String address;
+    Long companyId;
 }

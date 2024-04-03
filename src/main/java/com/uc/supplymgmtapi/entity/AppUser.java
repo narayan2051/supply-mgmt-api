@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -16,12 +17,21 @@ import java.util.Set;
 @Builder
 public class AppUser {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    private String firstName;
+    private String lastName;
+
+    private String phone;
     private String email;
 
     private String password;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    private Set<Role> roles;
+    @OneToOne
+    private CompanyInfo company;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "USER_ROLE")
+    private Set<Role> roles = new HashSet<>();
 }

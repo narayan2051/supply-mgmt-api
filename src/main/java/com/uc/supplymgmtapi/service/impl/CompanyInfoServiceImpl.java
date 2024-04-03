@@ -1,5 +1,6 @@
 package com.uc.supplymgmtapi.service.impl;
 
+import com.uc.supplymgmtapi.dto.AppUserDTO;
 import com.uc.supplymgmtapi.entity.CompanyInfo;
 import com.uc.supplymgmtapi.repository.CompanyInfoRepository;
 import com.uc.supplymgmtapi.service.CompanyInfoService;
@@ -24,8 +25,8 @@ public class CompanyInfoServiceImpl implements CompanyInfoService {
     }
 
     @Override
-    public CompanyInfo findById(String id) {
-        return null;
+    public CompanyInfo findById(Long id) {
+        return companyInfoRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -34,7 +35,7 @@ public class CompanyInfoServiceImpl implements CompanyInfoService {
     }
 
     @Override
-    public void deleteById(String id) {
+    public void deleteById(Long id) {
 
     }
 }

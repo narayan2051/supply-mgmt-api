@@ -1,10 +1,10 @@
 package com.uc.supplymgmtapi.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.FieldDefaults;
+
+import java.util.List;
 
 @Setter
 @Getter
@@ -12,13 +12,14 @@ import lombok.*;
 @AllArgsConstructor
 @Entity
 @Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
-    private String name;
-    private Double quantity;
-    private  Double price;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Long id;
+    String name;
+    @OneToOne
+    Category category;
 
-
+    Long companyId;
 }

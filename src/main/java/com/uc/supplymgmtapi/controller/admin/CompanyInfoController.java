@@ -25,7 +25,7 @@ public class CompanyInfoController {
         return ResponseEntity.ok(companyInfoService.save(companyInfo));
     }
 
-    public ResponseEntity<CompanyInfo> findById(String id) {
+    public ResponseEntity<CompanyInfo> findById(Long id) {
         return null;
     }
 
@@ -34,7 +34,7 @@ public class CompanyInfoController {
         return ResponseEntity.ok(companyInfoService.findAll());
     }
 
-    public void deleteById(String id) {
+    public void deleteById(Long id) {
 
     }
 }

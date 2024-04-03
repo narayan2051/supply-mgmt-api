@@ -5,9 +5,9 @@ import java.util.List;
 public interface GenericService<T> {
     T save(T t);
 
-    T findById(String id);
+    T findById(Long id);
 
     List<T> findAll();
 
-    void deleteById(String id);
+    void deleteById(Long id);
 }

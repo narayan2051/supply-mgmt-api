@@ -4,18 +4,22 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-@Data
+import java.util.List;
+
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Entity
-@Table(name = "CATEGORY")
-public class Category {
+public class ProductItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     String name;
-    String description;
+    Double price;
+    Double quantity;
+    String unit;
+    Long productId;
     Long companyId;
 }

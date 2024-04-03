@@ -1,8 +1,10 @@
 package com.uc.supplymgmtapi.controller;
 
+import com.uc.supplymgmtapi.dto.AuthDTO;
 import com.uc.supplymgmtapi.dto.Login;
 import com.uc.supplymgmtapi.dto.TokenDTO;
 import com.uc.supplymgmtapi.entity.AppUser;
+import com.uc.supplymgmtapi.entity.AuthenticatedUser;
 import com.uc.supplymgmtapi.entity.Role;
 import com.uc.supplymgmtapi.security.JwtService;
 import com.uc.supplymgmtapi.service.AppUserService;
@@ -40,7 +42,10 @@ public class AuthenticationController {
     public ResponseEntity<TokenDTO> login(@RequestBody Login login) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(login.getEmail(), login.getPassword()));
         if (authentication.isAuthenticated()) {
-            return ResponseEntity.ok(new TokenDTO(jwtService.generateToken(login.getEmail()), authentication.getAuthorities().toString()));
+            AuthenticatedUser authenticatedUser = (AuthenticatedUser) authentication.getPrincipal();
+            return ResponseEntity.ok(TokenDTO.builder().token(jwtService.generateToken(login.getEmail()))
+                    .role(authentication.getAuthorities().toString())
+                    .firstName(authenticatedUser.getFirstName()).lastName(authenticatedUser.getLastName()).build());
         } else {
             throw new UsernameNotFoundException("invalid user !");
         }
@@ -54,8 +59,8 @@ public class AuthenticationController {
         Role userWithRoleAdmin = roleService.save(roleAdmin);
 
 
-        AppUser adminUser = AppUser.builder().email("narayan@email.com").password(passwordEncoder.encode("12345")).build();
-        AppUser userUser = AppUser.builder().email("ashok@email.com").password(passwordEncoder.encode("12345")).build();
+        AppUser adminUser = AppUser.builder().firstName("Narayan").lastName("Chapagain").phone("723647236").email("narayan@email.com").password(passwordEncoder.encode("12345")).build();
+        AppUser userUser = AppUser.builder().firstName("Ashok").lastName("Lama").phone("17264781").email("ashok@email.com").password(passwordEncoder.encode("12345")).build();
         adminUser.setRoles(Set.of(userWithRoleAdmin));
         userUser.setRoles(Set.of(userWithRoleUser));
         appUserService.save(adminUser);

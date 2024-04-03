@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: supply-mgmt-api
+    version: 1.0.0
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+      url: jdbc:postgresql://localhost:5432/supply_mgmt
+      driver-class-name: org.postgresql.Driver
+      username: db_user
+      password: admin
+
+  flyway:
+    baselineOnMigrate: true
+security:
+  allowOrigins: http://localhost:4200

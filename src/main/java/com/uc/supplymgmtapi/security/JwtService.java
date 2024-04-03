@@ -1,5 +1,7 @@
 package com.uc.supplymgmtapi.security;
 
+import com.uc.supplymgmtapi.dto.AuthDTO;
+import com.uc.supplymgmtapi.entity.AuthenticatedUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Component;
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -65,7 +68,7 @@ public class JwtService {
     }
 
     public Boolean validateToken(String token, UserDetails userDetails) {
-        final String username = extractUsername(token);
+        final String username = extractUsername(token).toLowerCase();
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 }
