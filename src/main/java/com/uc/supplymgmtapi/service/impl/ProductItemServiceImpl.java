@@ -54,7 +54,7 @@ public class ProductItemServiceImpl implements ProductItemService {
 
     @Override
     public void deleteById(Long id) {
-
+     productItemRepository.deleteById(id);
     }
 
     @Override

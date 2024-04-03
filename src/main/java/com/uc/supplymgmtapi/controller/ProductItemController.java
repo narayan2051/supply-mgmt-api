@@ -25,4 +25,8 @@ public class ProductItemController {
     public ResponseEntity<List<ProductItemDTO>> findByProductId(@PathVariable Long productId) {
         return ResponseEntity.ok(productItemService.findByProductId(productId));
     }
+    @DeleteMapping("/{productId}")
+    public void deleteById(@PathVariable Long productId) {
+        productItemService.deleteById(productId);
+    }
 }
