@@ -18,6 +18,9 @@ public class ProductItemController {
     }
     @PostMapping
     public ResponseEntity<ProductItemDTO> save(@RequestBody ProductItemDTO productItemDTO) {
+        System.out.println("Hello Testing1");
+        System.out.println("Hello Testing2");
+        System.out.println("Hello Testing3");
         return ResponseEntity.ok(productItemService.save(productItemDTO));
     }
 
