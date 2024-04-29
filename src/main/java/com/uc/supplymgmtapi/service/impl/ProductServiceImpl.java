@@ -42,12 +42,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     private Product convertFromDTO(ProductDTO productDTO) {
-        return Product.builder().name(productDTO.getName()).id(productDTO.getId()).companyId(authUtil.getCompanyId()).build();
+        return Product.builder().name(productDTO.getName()).id(productDTO.getId()).companyId(authUtil.getCompanyId()).code(productDTO.getCode()).build();
     }
 
     private ProductDTO convertToDTO(Product product) {
         return ProductDTO.builder().name(product.getName())
-                .id(product.getId()).categoryId(product.getCategory().getId()).build();
+                .id(product.getId()).categoryId(product.getCategory().getId()).code(product.getCode()).build();
     }
 
     @Override

@@ -1,19 +1,21 @@
 package com.uc.supplymgmtapi.dto;
 
-import com.uc.supplymgmtapi.entity.Category;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
-import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ProductDTO {
+public class VendorDTO {
+
     Long id;
     String name;
-    String code;
-    Long categoryId;
+    String phone;
+    String email;
+    String address;
+
 }

@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.util.List;
-
 @Setter
 @Getter
 @NoArgsConstructor
@@ -13,14 +11,13 @@ import java.util.List;
 @Entity
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Product {
+public class Vendor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     String name;
-    String code;
-    @OneToOne
-    Category category;
-
+    String phone;
+    String email;
+    String address;
     Long companyId;
 }
